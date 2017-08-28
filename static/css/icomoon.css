@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?yzy4sy');
+  src:  url('../fonts/icomoon.ttf?yzy4sy') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[class^="icon-"]:before {
+	display: inline-block;
+	text-decoration: none;
+}
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-spinner:before {
+  content: "\e984";
+}
+.icon-cogs:before {
+  content: "\e995";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-plus:before {
+  content: "\ea0a";
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+.icon-exit:before {
+  content: "\ea14";
+}
+
+@keyframes anim-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.spin {
+	display: inline-block;
+	margin-right: .5em;
+	animation: anim-rotate 2s infinite linear;
+}
