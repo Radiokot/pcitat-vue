@@ -7,20 +7,20 @@
         <div class="container container-behind-nav">
             <div class="page-header">
                 <h1>Мои книги</h1>
-                <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button> 
+                <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button>
             </div>
             <p class="lead" v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length == 0">
                 Пока что здесь пусто
             </p>
             <p class="lead" v-if="!this.$root.$data.booksLoaded && !this.$root.$data.booksFailed">
-                 <span class="icon-spinner spin"></span>Загрузка...
+                <span class="icon-spinner spin"></span>Загрузка...
             </p>
             <div v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length >= 0" id="booksFilter" class="row">
                 <div class="col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon" id="filter-addon"><span class="icon-search" aria-hidden="true"></span></span>
-                    <input class="form-control col-md-4" v-model="filter" placeholder="Поиск" aria-describedby="filter-addon">
-                </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="filter-addon"><span class="icon-search" aria-hidden="true"></span></span>
+                        <input class="form-control col-md-4" v-model="filter" placeholder="Поиск" aria-describedby="filter-addon">
+                    </div>
                 </div>
             </div>
             <ErrorAlert v-if="this.$root.$data.booksFailed" message="Не удалось загрузить книги"></ErrorAlert>
@@ -61,6 +61,33 @@
                     mode: 'success',
                     text: 'Книга добавлена'
                 })
+            },
+            isBookMatchFilter(book, filter) {
+                let unmatchedBookParts = book.title.toLowerCase().split(' ')
+                    .concat(book.author.toLowerCase().split(' '))
+                let unmatchedFilterParts = filter.trim().toLowerCase().split(' ')
+                let gotNewMatches = true
+                while (unmatchedBookParts.length > 0
+                    && unmatchedFilterParts.length > 0
+                    && gotNewMatches) {
+                    gotNewMatches = false
+                    let i = unmatchedBookParts.length
+                    while (--i >= 0) {
+                        let bookPart = unmatchedBookParts[i]
+
+                        let j = unmatchedFilterParts.length
+                        while (--j >= 0) {
+                            let filterPart = unmatchedFilterParts[j]
+                            if (bookPart.startsWith(filterPart)) {
+                                unmatchedBookParts.splice(i, 1)
+                                unmatchedFilterParts.splice(j, 1)
+                                gotNewMatches = true
+                                break
+                            }
+                        }
+                    }
+                }
+                return unmatchedFilterParts.length == 0
             }
         },
         computed: {
@@ -72,20 +99,13 @@
                 return bookId != null ? bookId : 0
             },
             filteredBooks() {
-                let filter = this.filter.toLowerCase()
+                let filter = this.filter.toLowerCase().trim()
+                let filterParts = this.filter.split(' ')
                 if (this.filter == '') {
                     return this.$root.books
                 } else {
                     return this.$root.books.filter(it => {
-                        let parts = 
-                            it.title.toLowerCase().split(" ")
-                            .concat(it.author.toLowerCase().split(" "))
-                        for (let part of parts) {
-                            if (part.startsWith(filter)) {
-                                return true
-                            }
-                        }
-                        return false
+                        return this.isBookMatchFilter(it, filter)
                     })
                 }
             }
