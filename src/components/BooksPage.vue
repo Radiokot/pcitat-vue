@@ -7,7 +7,7 @@
         <div class="container container-behind-nav">
             <div class="page-header">
                 <h1>Мои книги</h1>
-                <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button>
+                <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button> 
             </div>
             <p class="lead" v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length == 0">
                 Пока что здесь пусто
@@ -15,9 +15,17 @@
             <p class="lead" v-if="!this.$root.$data.booksLoaded && !this.$root.$data.booksFailed">
                  <span class="icon-spinner spin"></span>Загрузка...
             </p>
+            <div v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length >= 0" id="booksFilter" class="row">
+                <div class="col-xs-12">
+                <div class="input-group">
+                    <span class="input-group-addon" id="filter-addon"><span class="icon-search" aria-hidden="true"></span></span>
+                    <input class="form-control col-md-4" v-model="filter" placeholder="Поиск" aria-describedby="filter-addon">
+                </div>
+                </div>
+            </div>
             <ErrorAlert v-if="this.$root.$data.booksFailed" message="Не удалось загрузить книги"></ErrorAlert>
             <div id="booksGrid">
-                <BookItem v-for="book in this.$root.$data.books" :book="book" :key="book.id"></BookItem>
+                <BookItem v-for="book in filteredBooks" :book="book" :key="book.id"></BookItem>
             </div>
         </div>
         <Footer></Footer>
@@ -32,6 +40,7 @@
         components: { BookItem, AddBookModal },
         data() {
             return {
+                filter: ''
             }
         },
         created() {
@@ -61,6 +70,24 @@
                     bookId = this.$root.$data.user.twitter.book
                 } catch (e) { }
                 return bookId != null ? bookId : 0
+            },
+            filteredBooks() {
+                let filter = this.filter.toLowerCase()
+                if (this.filter == '') {
+                    return this.$root.books
+                } else {
+                    return this.$root.books.filter(it => {
+                        let parts = 
+                            it.title.toLowerCase().split(" ")
+                            .concat(it.author.toLowerCase().split(" "))
+                        for (let part of parts) {
+                            if (part.startsWith(filter)) {
+                                return true
+                            }
+                        }
+                        return false
+                    })
+                }
             }
         },
         beforeDestroy() {

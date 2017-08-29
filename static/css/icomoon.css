@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?yzy4sy');
-  src:  url('../fonts/icomoon.ttf?yzy4sy') format('truetype');
+  src:  url('../fonts/icomoon.eot?yzy4my');
+  src:  url('../fonts/icomoon.ttf?yzy4my') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,10 +30,13 @@
   content: "\e971";
 }
 .icon-spinner:before {
-  content: "\e984";
+  content: "\e97b";
 }
-.icon-cogs:before {
-  content: "\e995";
+.icon-search:before {
+  content: "\e986";
+}
+.icon-cog:before {
+  content: "\e994";
 }
 .icon-bin:before {
   content: "\e9ac";

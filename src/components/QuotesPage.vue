@@ -18,7 +18,7 @@
                 цитату
                 </button>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cogs" aria-hidden="true"></span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog" aria-hidden="true"></span>
                             </button>
                     <ul class="dropdown-menu pull-right">
                         <li>

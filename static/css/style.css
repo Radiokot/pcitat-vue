@@ -117,6 +117,9 @@ blockquote .text {
 #toast-container > div {
 	opacity: 1;
 }
+#booksFilter {
+	margin-bottom: 20px;
+}
 .toast-top-center {
 	top: 25px !important;
 }
