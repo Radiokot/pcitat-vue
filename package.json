@@ -10,16 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "enquire.js": "^2.1.6",
-    "fetch": "^1.1.0",
-    "savvior": "^0.6.0",
     "vue": "^2.3.3",
     "vue-cookies": "^1.5.4",
-    "vue-doctitle": "0.0.4",
-    "vue-lazy-background-images": "^1.0.0",
-    "vue-lazy-img": "^0.1.0",
     "vue-router": "^2.6.0",
-    "vue-strap": "^1.1.37",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
