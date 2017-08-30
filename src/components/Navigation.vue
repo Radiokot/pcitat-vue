@@ -39,3 +39,22 @@
     }
 
 </script>
+
+<style>
+    .navbar {
+        border-radius: 0px;
+        box-shadow: 0px -2px 10px black;
+    }
+    
+    .navbar-nav>li>a {
+        line-height: inherit !important;
+    }
+    
+    .navbar-brand {
+        padding-top: 2px;
+    }
+    
+    .navbar-brand:hover {
+        background: inherit !important;
+    }
+</style>

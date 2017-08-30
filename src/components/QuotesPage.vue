@@ -141,14 +141,14 @@
             },
             onQuoteUpdated(quote) {
                 let exQuote = this.quotes
-								.find(it => it.id == quote.id)
+                    .find(it => it.id == quote.id)
                 let index = this.quotes.indexOf(exQuote)
                 exQuote.text = quote.text
                 this.$set(this.quotes, index, exQuote)
             },
             onQuoteDeleted(id) {
                 let quote = this.quotes
-								.find(it => it.id == id)
+                    .find(it => it.id == id)
                 let index = this.quotes.indexOf(quote)
                 this.quotes.splice(index, 1)
             },
@@ -185,3 +185,9 @@
     }
 
 </script>
+
+<style>
+    #quotesGrid {
+        margin: 0 -10px 0 -10px;
+    }
+</style>

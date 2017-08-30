@@ -20,3 +20,17 @@
     }
 
 </script>
+
+<style>
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background-color: #eeeeee;
+    }
+    
+    .footer p {
+        margin-top: 20px;
+    }
+</style>

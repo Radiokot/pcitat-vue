@@ -116,3 +116,20 @@
     }
 
 </script>
+
+<style>
+    #booksFilter {
+        margin-bottom: 20px;
+    }
+    
+    #booksGrid {
+        margin: 0 -10px 0 -10px;
+        text-align: justify;
+    }
+    
+    @media (max-width: 992px) {
+        #booksGrid {
+            text-align: center;
+        }
+    }
+</style>

@@ -31,3 +31,17 @@
 	}
 
 </script>
+
+<style>
+	blockquote {
+		margin: 0 10px 40px 10px;
+	}
+	
+	blockquote .btn {
+		padding: 0px;
+	}
+	
+	blockquote .text {
+		white-space: pre-wrap;
+	}
+</style>
