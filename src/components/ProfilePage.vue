@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <Navigation :activeTab="this.$root.$data.activeTab"></Navigation>
 
         <div class="container container-behind-nav">
             <div class="page-header">
@@ -49,7 +48,6 @@
                 </div>
             </span>
         </div>
-        <Footer></Footer>
     </div>
 </template>
 <script>

@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <Navigation :activeTab="this.$root.$data.activeTab"></Navigation>
 
         <AddBookModal></AddBookModal>
 
@@ -28,7 +27,6 @@
                 <BookItem v-for="book in filteredBooks" :book="book" :key="book.id"></BookItem>
             </div>
         </div>
-        <Footer></Footer>
     </div>
 </template>
 <script>

@@ -35,7 +35,12 @@
 </template>
 <script>
     export default {
-        props: ['activeTab']
+        props: ['activeTab'],
+        watch: {
+            '$route'(to, from) {
+                $('.navbar-collapse').collapse('hide')
+            }
+        }
     }
 
 </script>

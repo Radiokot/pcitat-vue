@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <Navigation :activeTab="activeTab"></Navigation>
 
         <SubmitQuoteModal></SubmitQuoteModal>
         <DeleteQuoteModal></DeleteQuoteModal>
@@ -10,16 +9,16 @@
             <div class="page-header">
                 <h1 v-if="activeTab != 1 && book.title == null">Загрузка...</h1>
                 <span v-else>
-                <h1>{{ activeTab == 1 ? 'Мои цитаты' : book.title}}</h1>
-                <span v-if="activeTab != 1">
-                    <p class="lead">{{ book.author ? book.author : 'Загрузка...' }}</p>
-                    <div class="btn-toolbar">
-					<button @click="addQuote" class="btn btn-info"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить
+                    <h1>{{ activeTab == 1 ? 'Мои цитаты' : book.title}}</h1>
+                    <span v-if="activeTab != 1">
+                        <p class="lead">{{ book.author ? book.author : 'Загрузка...' }}</p>
+                        <div class="btn-toolbar">
+                        <button @click="addQuote" class="btn btn-info"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить
                 цитату
                 </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog" aria-hidden="true"></span>
-                            </button>
+                                    </button>
                     <ul class="dropdown-menu pull-right">
                         <li>
                             <a @click="setTwitterBook">
@@ -45,7 +44,6 @@
             <QuoteItem v-for="quote in quotes" :key="quote.id" :quote="quote" :canEdit="activeTab!= 1"></QuoteItem>
         </div>
     </div>
-    <Footer></Footer>
     </div>
 </template>
 <script>

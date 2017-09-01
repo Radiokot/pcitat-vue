@@ -62,7 +62,9 @@
                 signupErrorMessage: ''
             }
         },
-        mounted() {
+        created() {
+            this.$root.$data.activeTab = 3
+
             if (this.logout) {
                 this.$root.$data.user = {
                     session: ''
