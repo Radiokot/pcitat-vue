@@ -10,6 +10,7 @@ body {
 }
 .container-behind-nav {
 	margin-top: 60px;
+	padding-bottom: 25px;
 }
 .page-header {
 	padding-bottom: 20px;
