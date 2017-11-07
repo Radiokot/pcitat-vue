@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="text-center"><img src="static/icon/icon120.png"><br>Просто цитатник</h1>
+                    <h1 class="text-center"><img src="static/icon/icon.svg" width="120"><br>Просто цитатник</h1>
                     <br>
                 </div>
                 <div class="col-md-4 col-md-offset-4">

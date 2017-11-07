@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
         </button>
                 <router-link class="navbar-brand" to="/">
-                    <img alt="Просто Цитатник" src="static/icon/icon60.png">
+                    <img alt="Просто Цитатник" src="static/icon/icon.svg" width="60">
                 </router-link>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
