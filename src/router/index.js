@@ -5,6 +5,7 @@ import LoginPage from '@/components/LoginPage'
 import BooksPage from '@/components/BooksPage'
 import QuotesPage from '@/components/QuotesPage'
 import ProfilePage from '@/components/ProfilePage'
+import KindleExportFaqPage from '@/components/KindleExportFaqPage'
 
 Vue.use(Router)
 
@@ -36,6 +37,10 @@ export default new Router({
             name: 'Profile',
             component: ProfilePage
         }, {
+            path: '/kindle-export-faq',
+            name: 'KindleExportFaq',
+            component: KindleExportFaqPage
+        } , {
             path: '/',
             redirect: { name: 'Books' }
         }

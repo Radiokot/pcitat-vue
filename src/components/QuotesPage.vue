@@ -33,10 +33,10 @@
             </span>
             </span>
         </div>
-        <p class="lead" v-if="quotesLoaded && quotes.length == 0">
+        <p class="text-center lead" v-if="quotesLoaded && quotes.length == 0">
             Пока что здесь пусто
         </p>
-        <p class="lead" v-if="!quotesLoaded && !quotesFailed">
+        <p class="text-center lead" v-if="!quotesLoaded && !quotesFailed">
             <span class="icon-spinner spin"></span>Загрузка...
         </p>
         <ErrorAlert v-if="quotesFailed" message="Не удалось загрузить цитаты"></ErrorAlert>

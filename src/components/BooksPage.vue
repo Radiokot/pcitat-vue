@@ -8,13 +8,15 @@
                 <h1>Мои книги</h1>
                 <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button>
             </div>
-            <p class="lead" v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length == 0">
-                Пока что здесь пусто
+            <p class="text-center lead" v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length == 0">
+                Пока что здесь пусто.
+                <br><br>
+                <small><router-link :to="{name: 'KindleExportFaq'}">Узнайте, как настроить экспорт отрывков с Kindle без подключения к компьютеру</router-link></small>
             </p>
-            <p class="lead" v-if="!this.$root.$data.booksLoaded && !this.$root.$data.booksFailed">
+            <p class="text-center lead" v-if="!this.$root.$data.booksLoaded && !this.$root.$data.booksFailed">
                 <span class="icon-spinner spin"></span>Загрузка...
             </p>
-            <div v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length >= 0" id="booksFilter" class="row">
+            <div v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length > 0" id="booksFilter" class="row">
                 <div class="col-xs-12">
                     <div class="input-group">
                         <span class="input-group-addon" id="filter-addon"><span class="icon-search" aria-hidden="true"></span></span>
