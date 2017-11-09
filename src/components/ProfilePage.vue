@@ -42,6 +42,12 @@
                                     </p>
                                     <div id="uLogin" :data-ulogin="'display=panel;fields=first_name;theme=flat;providers=twitter;hidden=;mobilebuttons=0;redirect_uri=' + uLoginRedirectUrl + ';'"></div>
                                 </div>
+                                <label class="col-sm-5 control-label">Бот:</label>
+                                <div class="col-sm-7">
+                                    <p class="form-control-static">
+                                       <a href="https://twitter.com/pcitat" target="_blank">@pcitat</a>
+                                    </p>
+                                </div>
                             </div>
                         </form>
                     </div>
