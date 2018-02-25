@@ -1,7 +1,7 @@
 export default (vue) => {
 	return {
 		getCurrent() {
-			return vue.Api.withSession(vue.user.session, null)
+			return vue.Api.withCredentials(vue.credentials, null)
 				.request('GET', 'getUserInfo.php')
 		},
 		logIn(loginData) {

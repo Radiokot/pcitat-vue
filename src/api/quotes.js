@@ -5,13 +5,13 @@ export default (vue) => {
             if (book) {
                 query.book = book
             }
-			return vue.Api.withSession(vue.user.session, vue.$router)
+			return vue.Api.withCredentials(vue.credentials, vue.$router)
 			.request('GET', 'quotes.php', {
 				query
 			})
 		},
 		add(quoteData) {
-			return vue.Api.withSession(vue.user.session, vue.$router)
+			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('POST', 'quotes.php', {
 					body: { 
 						text: quoteData.text
@@ -22,7 +22,7 @@ export default (vue) => {
 				})
 		},
 		edit(quoteData) {
-			return vue.Api.withSession(vue.user.session, vue.$router)
+			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('PATCH', 'quotes.php', {
 					body: { 
 						text: quoteData.text
@@ -33,7 +33,7 @@ export default (vue) => {
 				})
 		},
 		delete(id) {
-			return vue.Api.withSession(vue.user.session, vue.$router)
+			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('DELETE', 'quotes.php', {
 					query: { id }
 				})

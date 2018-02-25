@@ -1,10 +1,10 @@
 import 'whatwg-fetch'
 
-const API = 'https://pc.radiokot.com.ua/api/'
+const API = process.env.API_URL
 
-function createApiObject(session = null, router = null) {
+function createApiObject(credentials = null, router = null) {
     return {
-        session: session,
+        credentials: credentials,
         router: router,
         request(type, method, params = {
             query: {},
@@ -20,9 +20,13 @@ function createApiObject(session = null, router = null) {
             let fetchParams = {
                 method: type,
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-Session': this.session
+                    'Content-Type': 'application/json'
                 }
+            }
+
+            if (this.credentials) {
+                fetchParams.headers['X-Auth-Email'] = this.credentials.email
+                fetchParams.headers['X-Auth-Key'] = this.credentials.key
             }
 
             if (type != 'GET' && type != 'HEAD') {
@@ -45,8 +49,8 @@ function createApiObject(session = null, router = null) {
                 })
                 .then(response => response.response)
         },
-        withSession(session, router) {
-            return createApiObject(session, router)
+        withCredentials(credentials, router) {
+            return createApiObject(credentials, router)
         }
     }
 }

@@ -28,11 +28,13 @@ let vm = new Vue({
         booksFailed: false,
         activeTab: 0,
         Api: Api,
-        bus: new Vue({})
+        bus: new Vue({}),
+        credentials: undefined
     },
     created() {
-        this.user.session = this.$cookies.get("session")
-        if (this.user.id == undefined) {
+        this.credentials = JSON.parse(this.$cookies.get('credentials'))
+
+        if (this.user == undefined || this.user.id == undefined) {
             this.obtainUser()
         }
 
@@ -88,7 +90,11 @@ let vm = new Vue({
         user: function (user) {
             this.user = user
             this.userLoaded = true
-            this.$cookies.set('session', user.session)
+            this.credentials = {
+                email: user.email,
+                key: user.key
+            }
+            this.$cookies.set('credentials', JSON.stringify(this.credentials), -1)
         },
         booksLoaded: function (val) {
             this.booksLoaded = val

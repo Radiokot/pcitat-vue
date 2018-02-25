@@ -76,7 +76,9 @@
                 return this.$root.$data.user.twitter ? this.$root.$data.user.twitter.username : null
             },
             uLoginRedirectUrl() {
-                return 'http://pc.radiokot.com.ua/api/twitter?' + this.$root.$data.user.session
+                let credentials = this.$root.$data.credentials
+                let redirectBase = process.env.TWITTER_REDIRECT_URL
+                return `${redirectBase}?${credentials.email}|${credentials.key}`
             }
         }
     }

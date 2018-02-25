@@ -66,9 +66,10 @@
             this.$root.$data.activeTab = 3
 
             if (this.logout) {
-                this.$root.$data.user = {
-                    session: ''
-                }
+                this.$cookies.remove('credentials')
+                this.$root.$data.user = undefined
+                this.$root.$data.credentials = undefined
+                this.$root.$data.userLoaded = false
             }
         },
         methods: {
