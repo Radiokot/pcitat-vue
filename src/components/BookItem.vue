@@ -70,7 +70,7 @@
     }
     
     .book .info {
-        background: rgba(240, 240, 240, 0.9);
+        background: #f0f0f0e6;
         width: 100%;
         height: 100%;
         line-height: 100%;
