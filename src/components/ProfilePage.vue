@@ -38,9 +38,13 @@
                                 <label class="col-sm-5 control-label">Учетная запись:</label>
                                 <div class="col-sm-7">
                                     <p class="form-control-static">
-                                        {{ twitterAccount ? twitterAccount : 'не указана'}}
-                                    </p>
-                                    <div id="uLogin" :data-ulogin="'display=panel;fields=first_name;theme=flat;providers=twitter;hidden=;mobilebuttons=0;redirect_uri=' + uLoginRedirectUrl + ';'"></div>
+                                        <span v-if="twitterAccount">
+                                        {{ twitterAccount }}
+                                        &nbsp;&nbsp;
+                                        </span><a :href="twitterAuthUrl" role="button">
+                                        {{ twitterAccount ? 'Изменить' : 'Указать'}}
+                                    </a> 
+                                    </p>             
                                 </div>
                                 <label class="col-sm-5 control-label">Бот:</label>
                                 <div class="col-sm-7">
@@ -57,6 +61,7 @@
     </div>
 </template>
 <script>
+    import sha256 from 'sha256'
     export default {
         name: 'app',
         components: {  },
@@ -66,19 +71,17 @@
         },
         created() {
             this.$root.$data.activeTab = 2
-
-            let uLoginScript = document.createElement('script')   
-            uLoginScript.setAttribute('src', '//ulogin.ru/js/ulogin.js')
-            document.head.appendChild(uLoginScript)
         },
         computed: {
             twitterAccount() {
                 return this.$root.$data.user.twitter ? this.$root.$data.user.twitter.username : null
             },
-            uLoginRedirectUrl() {
+            twitterAuthUrl() {
                 let credentials = this.$root.$data.credentials
-                let redirectBase = process.env.TWITTER_REDIRECT_URL
-                return `${redirectBase}?${credentials.email}|${credentials.key}`
+                let redirectBase = process.env.API_URL + "twitterOauth.php"
+                let email = credentials.email
+                let requestKey = sha256(credentials.key)
+                return `${redirectBase}?email=${email}&request_key=${requestKey}`
             }
         }
     }
