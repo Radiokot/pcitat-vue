@@ -21,6 +21,10 @@
                                 <input v-model="signupData.password" class="form-control" type="password" name="signupPassword" autocomplete="off" id="signupPassword"
                                     placeholder="Введите ваш пароль" required>
                             </div>
+                            <p class="small">Регистрируясь, вы соглашаетесь
+                                с <a :href="termsUrl" target="_blank">Договором об использовании</a> и 
+                                <a :href="privacyUrl" target="_blank">Договором конфиденциальности</a>
+                            </p>
                             <ErrorAlert :message="errorMessage"></ErrorAlert>
                         </div>
                         <div class="modal-footer">
@@ -58,7 +62,13 @@
 		computed: {
 			queryModalId() {
 				return '#' + this.modalId
-			}
+			},
+            termsUrl() {
+                return this.$router.resolve({name: "Terms"}).href
+            },
+            privacyUrl() {
+                return this.$router.resolve({name: "Privacy"}).href
+            }
 		},
 		methods: {
             onSignup() {

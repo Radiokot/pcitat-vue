@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false">
+                <button v-if="this.$root.$data.userLoaded" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false">
             <span class="sr-only">Навигация</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
                     <img alt="Просто Цитатник" src="static/icon/icon.svg" width="60">
                 </router-link>
             </div>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div v-if="this.$root.$data.userLoaded" class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav">
                     <li :class="activeTab == '0' ? 'active' : ''">
                         <router-link to="/books">Мои книги</router-link>
