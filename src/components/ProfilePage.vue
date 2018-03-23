@@ -30,7 +30,7 @@
                         </form>
                     </div>
                 </div>
-                <h3>Экспорт через Twitter</h3>
+                <h3>Экспорт через Twitter <router-link :to="{name: 'KindleExportFaq'}"><span class="badge">?</span></router-link></h3>
                 <div class="row">
                     <div class="col-sm-6">
                         <form class="form-horizontal">
