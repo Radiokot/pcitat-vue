@@ -106,7 +106,7 @@
 
 </script>
 
-<style>
+<style scoped>
     #loginWithTwitter {
         margin-bottom: 20px;
     }
@@ -124,7 +124,10 @@
         background-color: #006dbf;
         border-color: #006dbf;
     }
-    body {
-        margin-bottom: 0;
+    #footerCompensator {
+        margin-bottom: -80px;
+    }
+    #app {
+        height: 80vh;
     }
 </style>
