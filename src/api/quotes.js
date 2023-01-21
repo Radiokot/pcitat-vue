@@ -14,7 +14,8 @@ export default (vue) => {
 			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('POST', 'quotes.php', {
 					body: { 
-						text: quoteData.text
+						text: quoteData.text,
+						isPublic: quoteData.isPublic,
 					},
 					query: {
 						book: quoteData.book
@@ -25,7 +26,8 @@ export default (vue) => {
 			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('PATCH', 'quotes.php', {
 					body: { 
-						text: quoteData.text
+						text: quoteData.text,
+						isPublic: quoteData.isPublic,
 					},
 					query: {
 						id: quoteData.id

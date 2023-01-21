@@ -11,6 +11,10 @@
 							<label for="quoteText">Текст цитаты</label>
 							<textarea @keydown.ctrl.enter="onTextSubmitted" @keydown.meta.enter="onTextSubmitted" class="form-control" v-model="quoteText" rows="5" required autocomplete="off" autofocus></textarea>
 						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="quotePublicity" v-model="quoteIsPublic">
+							<label class="form-check-label" for="quotePublicity">Публичная цитата</label>
+						</div>
 						<ErrorAlert :message="errorMessage"></ErrorAlert>
 					</div>
 					<div class="modal-footer">
@@ -32,6 +36,7 @@
 				bookId: '',
 				quoteId: '',
 				quoteText: '',
+				quoteIsPublic: false,
 				errorMessage: '',
 				submitButtonEnabled: true,
 				modalId: 'submitQuoteModal'
@@ -55,6 +60,7 @@
 				this.isAdd = false
 				this.quoteText = quote.text
 				this.quoteId = quote.id
+				this.quoteIsPublic = quote.isPublic
 				this.errorMessage = ''
 
 				$(this.queryModalId).modal('show')
@@ -64,6 +70,7 @@
 				this.bookId = bookId
 				this.quoteText = ''
 				this.errorMessage = ''
+				this.quoteIsPublic = true
 
 				$(this.queryModalId).modal('show')
 			},
@@ -79,10 +86,12 @@
 				let call = this.isAdd 
 					? Quotes(this.$root).add({
 						text: this.quoteText,
+						isPublic: this.quoteIsPublic,
 						book: this.bookId
 					})
 					: Quotes(this.$root).edit({
 						text: this.quoteText,
+						isPublic: this.quoteIsPublic,
 						id: this.quoteId
 					})
 
