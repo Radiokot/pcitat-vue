@@ -15,7 +15,7 @@ export default (vue) => {
 				.request('POST', 'quotes.php', {
 					body: { 
 						text: quoteData.text,
-						isPublic: quoteData.isPublic,
+						is_public: quoteData.is_public,
 					},
 					query: {
 						book: quoteData.book
@@ -27,7 +27,7 @@ export default (vue) => {
 				.request('PATCH', 'quotes.php', {
 					body: { 
 						text: quoteData.text,
-						isPublic: quoteData.isPublic,
+						is_public: quoteData.is_public,
 					},
 					query: {
 						id: quoteData.id

@@ -60,7 +60,7 @@
 				this.isAdd = false
 				this.quoteText = quote.text
 				this.quoteId = quote.id
-				this.quoteIsPublic = quote.isPublic
+				this.quoteIsPublic = quote.is_public
 				this.errorMessage = ''
 
 				$(this.queryModalId).modal('show')
@@ -86,12 +86,12 @@
 				let call = this.isAdd 
 					? Quotes(this.$root).add({
 						text: this.quoteText,
-						isPublic: this.quoteIsPublic,
+						is_public: this.quoteIsPublic,
 						book: this.bookId
 					})
 					: Quotes(this.$root).edit({
 						text: this.quoteText,
-						isPublic: this.quoteIsPublic,
+						is_public: this.quoteIsPublic,
 						id: this.quoteId
 					})
 

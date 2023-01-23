@@ -142,6 +142,7 @@
                     .find(it => it.id == quote.id)
                 let index = this.quotes.indexOf(exQuote)
                 exQuote.text = quote.text
+                exQuote.is_public = quote.is_public
                 this.$set(this.quotes, index, exQuote)
             },
             onQuoteDeleted(id) {
