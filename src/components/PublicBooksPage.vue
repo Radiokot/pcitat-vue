@@ -1,22 +1,18 @@
 <template>
     <div id="app">
-
-        <AddBookModal></AddBookModal>
-
         <div class="container container-behind-nav">
             <div class="page-header">
-                <h1>Мои книги</h1>
-                <button class="btn btn-info" @click="addBook"><span class="icon-plus" aria-hidden="true">&nbsp;</span>Добавить</button>
+                <h1>Книги пользователя с цитатами</h1>
             </div>
-            <p class="text-center lead" v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length == 0">
+            <p class="text-center lead" v-if="booksLoaded && books.length == 0">
                 Пока что здесь пусто.
                 <br><br>
                 <small><router-link :to="{name: 'KindleExportFaq'}">Узнайте, как настроить экспорт отрывков с Kindle без подключения к компьютеру</router-link></small>
             </p>
-            <p class="text-center lead" v-if="!this.$root.$data.booksLoaded && !this.$root.$data.booksFailed">
+            <p class="text-center lead" v-if="!booksLoaded && !booksFailed">
                 <span class="icon-spinner spin"></span>Загрузка...
             </p>
-            <div v-if="this.$root.$data.booksLoaded && this.$root.$data.books.length > 0" id="booksFilter" class="row">
+            <div v-if="booksLoaded && books.length > 0" id="booksFilter" class="row">
                 <div class="col-xs-12">
                     <div class="input-group">
                         <span class="input-group-addon" id="filter-addon"><span class="icon-search" aria-hidden="true"></span></span>
@@ -24,43 +20,58 @@
                     </div>
                 </div>
             </div>
-            <ErrorAlert v-if="this.$root.$data.booksFailed" message="Не удалось загрузить книги"></ErrorAlert>
+            <ErrorAlert v-if="booksFailed" message="Не удалось загрузить книги"></ErrorAlert>
             <div id="booksGrid">
-                <BookItem v-for="book in filteredBooks" :book="book" :key="book.id"></BookItem>
+                <BookItem v-for="book in filteredBooks" :book="book" :key="book.id" :isPublic="true" :userId="userId"></BookItem>
             </div>
         </div>
     </div>
 </template>
 <script>
     import BookItem from '@/components/BookItem'
-    import AddBookModal from '@/components/AddBookModal'
-
+    
+    import Books from '@/api/books'
+    
     export default {
         name: 'app',
-        components: { BookItem, AddBookModal },
+        components: { BookItem },
+        props: ['userId'],
         data() {
             return {
-                filter: ''
+                filter: '',
+                books: [],
+                booksLoaded: false,
+                booksFailed: false
             }
         },
         created() {
-            this.$root.$data.activeTab = 0
-            this.$root.obtainBooks()
-
-            this.$root.bus.$on('book-added', this.onBookAdded)
+            this.afterRouteChanged()
+        },
+        watch: {
+            '$route'(to, from) {
+                this.afterRouteChanged()
+            }
         },
         updated() {
             $('[data-toggle="tooltip"]').tooltip()
         },
         methods: {
-            addBook() {
-                this.$root.bus.$emit('add-book')
+            afterRouteChanged() {
+                this.$root.$data.activeTab = -1
+
+                this.loadBooks()
             },
-            onBookAdded() {
-                this.$root.bus.$emit('toast', {
-                    mode: 'success',
-                    text: 'Книга добавлена'
-                })
+            loadBooks() {
+                this.booksLoaded = false
+                this.books = []
+                Books(this.$root).getPublic(this.userId)
+                    .then(response => {
+                        this.books = response.items
+                        this.booksLoaded = true
+                    })
+                    .catch(error => {
+                        this.booksFailed = true
+                    })
             },
             isBookMatchFilter(book, filter) {
                 let unmatchedBookParts = book.title.toLowerCase().split(' ')
@@ -91,27 +102,17 @@
             }
         },
         computed: {
-            twitterBook() {
-                let bookId = null
-                try {
-                    bookId = this.$root.$data.user.twitter.book
-                } catch (e) { }
-                return bookId != null ? bookId : 0
-            },
             filteredBooks() {
                 let filter = this.filter.toLowerCase().trim()
                 if (this.filter == '') {
-                    return this.$root.books
+                    return this.books
                 } else {
-                    return this.$root.books.filter(it => {
+                    return this.books.filter(it => {
                         return this.isBookMatchFilter(it, filter)
                     })
                 }
             }
         },
-        beforeDestroy() {
-            this.$root.bus.$off('book-added', this.onBookAdded)
-        }
     }
 
 </script>

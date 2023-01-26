@@ -5,8 +5,8 @@
             <div class="page-header">
                 <h1 v-if="book.id != null && book.title == null">Загрузка...</h1>
                 <span v-else>
-                    <h3 v-if="userId != null && book.id != null">Публичные цитаты пользователя</h3>
-                    <h1>{{ book.id == null ? 'Публичные цитаты пользователя' : book.title}}</h1>
+                    <h3 v-if="userId != null && book.id != null">Цитаты пользователя</h3>
+                    <h1>{{ book.id == null ? 'Цитаты пользователя' : book.title}}</h1>
                     <span v-if="book.id != null">
                         <p class="lead">{{ book.author ? book.author : 'Загрузка...' }}</p>
                     </span>

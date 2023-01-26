@@ -1,7 +1,7 @@
 <template>
     <div class="book">
         <div class="thumbnail">
-            <router-link :to="{name: 'BookQuotes', params: {bookId: book.id, bookTitle: book.title, bookAuthor: book.author}}" append>
+            <router-link :to="{name: isPublic ? 'PublicBookQuotes' : 'BookQuotes', params: {bookId: book.id, userId, bookTitle: book.title, bookAuthor: book.author}}" append>
                 <div class="cover" :style="'background-image: url(' + book.cover + ')'">
                     <div class="info">
                         <div class="vertical-align">
@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        props: ['book'],
+        props: ['book', 'isPublic', 'userId'],
         computed: {
             twitterBook() {
                 let bookId = null
