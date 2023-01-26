@@ -88,6 +88,10 @@ let vm = new Vue({
     },
     watch: {
         user: function (user) {
+            if (!user) {
+                return
+            }
+
             this.user = user
             this.userLoaded = true
             this.credentials = {
