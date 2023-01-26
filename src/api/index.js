@@ -37,7 +37,7 @@ function createApiObject(credentials = null, router = null) {
                 .then(response => {
                     if (!response.ok) {
                         if (response.status == 401 && router) {
-                            router.push({name: 'Login'})
+                            router.replace({name: 'Login'})
                         }
 
                         return Promise.reject({
