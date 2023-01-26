@@ -13,7 +13,7 @@
                 <div class="caption">
                     <h5 class="title">{{ book.title }}</h5>
                     <div class="book-badges">
-                        <span v-if="twitterBook == book.id" class="label label-info label-as-badge" data-toggle="tooltip" data-placement="bottom"
+                        <span v-if="book.twitterBook" class="label label-info label-as-badge" data-toggle="tooltip" data-placement="bottom"
                             title="Используется для экспорта из Twitter"><img src="static/icon/twitter-icon.svg"></span>
                             <span class="label label-primary label-as-badge" data-toggle="tooltip" data-placement="bottom" title="Количество цитат">{{ book.quotesCount }}</span>
                     </div>
@@ -25,16 +25,7 @@
 
 <script>
     export default {
-        props: ['book', 'isPublic', 'userId'],
-        computed: {
-            twitterBook() {
-                let bookId = null
-                try {
-                    bookId = this.$root.$data.user.twitter.book
-                } catch (e) { }
-                return bookId != null ? bookId : 0
-            }
-        }
+        props: ['book', 'isPublic', 'userId']
     }
 
 </script>

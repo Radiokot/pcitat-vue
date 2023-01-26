@@ -56,6 +56,33 @@
                         </form>
                     </div>
                 </div>
+                <h3>Публичный профиль</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">Книги:</label>
+                                <div class="col-sm-7">
+                                    <p class="form-control-static">
+                                        <a :href="publicBooksPageAbsoluteUrl">
+                                            {{ publicBooksPageAbsoluteUrl }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">Цитаты:</label>
+                                <div class="col-sm-7">
+                                    <p class="form-control-static">
+                                        <a :href="publicQuotesPageAbsoluteUrl">
+                                            {{ publicQuotesPageAbsoluteUrl }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </span>
         </div>
     </div>
@@ -82,6 +109,26 @@
                 let email = credentials.email
                 let requestKey = sha256(credentials.key)
                 return `${redirectBase}?email=${email}&request_key=${requestKey}`
+            },
+            publicBooksPageAbsoluteUrl() {
+                let href = this.$router.resolve({
+                    name: 'PublicBooks',
+                    params: { 
+                        userId: this.$root.$data.user.id
+                    }
+                }).href
+
+                return new URL(href, window.location.origin).href;
+            },
+            publicQuotesPageAbsoluteUrl() {
+                let href = this.$router.resolve({
+                    name: 'PublicQuotes', 
+                    params: {
+                        userId: this.$root.$data.user.id 
+                    }
+                }).href
+
+                return new URL(href, window.location.origin).href;
             }
         }
     }
