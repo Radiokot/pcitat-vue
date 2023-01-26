@@ -10,6 +10,17 @@ export default (vue) => {
 				query
 			})
 		},
+		getPublic(user, book) {
+			let query = {
+				user: user
+			}
+            if (book) {
+                query.book = book
+            }
+			return vue.Api.request('GET', 'publicQuotes.php', {
+				query
+			})
+		},
 		add(quoteData) {
 			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('POST', 'quotes.php', {

@@ -41,7 +41,7 @@
         </p>
         <ErrorAlert v-if="quotesFailed" message="Не удалось загрузить цитаты"></ErrorAlert>
         <div id="quotesGrid">
-            <QuoteItem v-for="quote in quotes" :key="quote.id" :quote="quote" :canEdit="activeTab!= 1"></QuoteItem>
+            <QuoteItem v-for="quote in quotes" :key="quote.id" :quote="quote" :canEdit="activeTab!= 1" :needsBookLink="book.id == null"></QuoteItem>
         </div>
     </div>
     </div>

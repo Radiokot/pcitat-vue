@@ -10,6 +10,18 @@ export default (vue) => {
 					query
 				})
 		},
+		getPublic(user, id) {
+			let query = {}
+			if (user) {
+				query.user = user
+			}
+			if (id) {
+				query.id = id
+			}
+			return vue.Api.request('GET', 'publicBooks.php', {
+				query
+			})
+		},
 		add(url) {
 			return vue.Api.withCredentials(vue.credentials, vue.$router)
 				.request('POST', 'books.php', {

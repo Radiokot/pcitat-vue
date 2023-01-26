@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import LoginPage from '@/components/LoginPage'
 import BooksPage from '@/components/BooksPage'
 import QuotesPage from '@/components/QuotesPage'
+import PublicQuotesPage from '@/components/PublicQuotesPage'
 import ProfilePage from '@/components/ProfilePage'
 import KindleExportFaqPage from '@/components/KindleExportFaqPage'
 import PrivacyPage from '@/components/PrivacyPage'
@@ -31,9 +32,19 @@ export default new Router({
             component: QuotesPage,
             props: true
         }, {
+            path: '/public/:userId/books/:bookId',
+            name: 'PublicBookQuotes',
+            component: PublicQuotesPage,
+            props: true
+        }, {
             path: '/quotes',
             name: 'Quotes',
             component: QuotesPage
+        }, {
+            path: '/public/:userId/quotes',
+            name: 'PublicQuotes',
+            component: PublicQuotesPage,
+            props: true
         }, {
             path: '/profile',
             name: 'Profile',
