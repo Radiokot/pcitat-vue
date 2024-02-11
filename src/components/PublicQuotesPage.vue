@@ -7,9 +7,11 @@
                 <span v-else>
                     <h3 v-if="userId != null && book.id != null">Цитаты пользователя</h3>
                     <h1>{{ book.id == null ? 'Цитаты пользователя' : book.title}}</h1>
+                    
                     <span v-if="book.id != null">
                         <p class="lead">{{ book.author ? book.author : 'Загрузка...' }}</p>
                     </span>
+                    <router-link v-else :to="{name: 'PublicBooks', params: { userId }}">К книгам</router-link>
             </span>
         </div>
         <p class="text-center lead" v-if="quotesLoaded && quotes.length == 0">

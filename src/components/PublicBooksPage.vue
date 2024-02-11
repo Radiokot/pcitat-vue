@@ -3,6 +3,7 @@
         <div class="container container-behind-nav">
             <div class="page-header">
                 <h1>Книги пользователя с цитатами</h1>
+                <router-link :to="{name: 'PublicQuotes', params: { userId }}">К цитатам</router-link>
             </div>
             <p class="text-center lead" v-if="booksLoaded && books.length == 0">
                 Пока что здесь пусто.
